@@ -125,8 +125,8 @@ if __name__ == "__main__":
         mergeSound2Mp4(sndname, vidName, saveName)
     else:
         for title in titles:
-            vidName = title + ".mp4"
-            sndName = title + ".mp3"
+            vidName = "./TMP_STORE/" + title + ".mp4"
+            sndName = "./TMP_STORE/" + title + ".mp3"
             saveName = "./Video/" + title + ".mp4"
             mergeSound2Mp4(sndName, vidName, saveName)
     # 全部转换完毕
