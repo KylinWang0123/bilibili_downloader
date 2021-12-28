@@ -127,7 +127,7 @@ if __name__ == "__main__":
         for title in titles:
             vidName = "./TMP_STORE/" + title + ".mp4"
             sndName = "./TMP_STORE/" + title + ".mp3"
-            saveName = "./Video/" + title + ".mp4"
+            saveName = "./Videos/" + title + ".mp4"
             mergeSound2Mp4(sndName, vidName, saveName)
     # 全部转换完毕
     os.system("rm -rf TMP_STORE")
