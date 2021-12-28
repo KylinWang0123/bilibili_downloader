@@ -94,11 +94,26 @@ if __name__ == "__main__":
     os.system("rm -rf TMP_STORE")
     os.system("mkdir TMP_STORE")
     if downLoadSingle ==  True:     #只下载一个
-        download(link=url_source, link_headers=headers, save_title=singgle_title)
+        retryFlag = True
+        retryCnt = 1
+        while(retryFlag):
+            try:
+                download(link=url_source, link_headers=headers, save_title=singgle_title)
+                retryFlag = False
+            except Exception as e:
+                print("Retry Download " + url_source + " #" + str(retryCnt))
+                retryCnt = retryCnt + 1
     else:
         for (title, url_link) in zip(titles, urls):
-            download(link=url_link, link_headers=headers, save_title=title)
-
+            retryFlag = True
+            retryCnt = 1
+            while(retryFlag):
+                try:
+                    download(link=url_link, link_headers=headers, save_title=title)
+                    retryFlag = False
+                except Exception as e:
+                    print("Retry Download " + url_link + " #" + str(retryCnt))
+                    retryCnt = retryCnt + 1
     # 完成下载后进行转换，转换后放入 videos 文件夹下
     os.system("rm -rf Videos")
     os.system("mkdir Videos")
@@ -113,7 +128,7 @@ if __name__ == "__main__":
             vidName = title + ".mp4"
             sndName = title + ".mp3"
             saveName = "./Video/" + title + ".mp4"
-            mergeSound2Mp4(sndname, vidName, saveName)
+            mergeSound2Mp4(sndName, vidName, saveName)
     # 全部转换完毕
     os.system("rm -rf TMP_STORE")
 
